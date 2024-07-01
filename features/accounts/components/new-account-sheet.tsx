@@ -34,6 +34,9 @@ const NewAccountSheet = () => {
       <SheetContent className="space-y-4">
         <SheetHeader>
           <SheetTitle>New Account</SheetTitle>
+          <SheetDescription>
+            Create a new account to track your transactions.
+          </SheetDescription>
         </SheetHeader>
         <AccountForm
           defaultValues={{
@@ -42,9 +45,6 @@ const NewAccountSheet = () => {
           onSubmit={onSubmit}
           disabled={mutation.isPending}
         />
-        <SheetDescription>
-          Create a new account to track your transactions.
-        </SheetDescription>
       </SheetContent>
     </Sheet>
   );

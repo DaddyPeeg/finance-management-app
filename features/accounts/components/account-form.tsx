@@ -83,7 +83,7 @@ export const AccountForm = ({
             className="w-full"
             variant="outline"
           >
-            <Trash className="" />
+            <Trash className="size-4 mr-2" />
             Delete Account
           </Button>
         )}
