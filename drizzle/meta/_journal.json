@@ -15,6 +15,13 @@
       "when": 1719570028888,
       "tag": "0001_lying_nocturne",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1719877487378,
+      "tag": "0002_strong_doomsday",
+      "breakpoints": true
     }
   ]
 }
