@@ -12,3 +12,11 @@ export function convertAmountToMilliunits(amount: number) {
 export function convertAmountFromMilliunits(amount: number) {
   return amount / 1000;
 }
+
+export function formatCurrency(value: number) {
+  return Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "PHP",
+    minimumFractionDigits: 2,
+  }).format(value);
+}
