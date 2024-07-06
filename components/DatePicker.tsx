@@ -38,6 +38,7 @@ export const DatePicker = ({ value, onChange, disabled }: Props) => {
           onSelect={onChange}
           disabled={disabled}
           initialFocus
+          className="z-[9999]"
         />
       </PopoverContent>
     </Popover>
