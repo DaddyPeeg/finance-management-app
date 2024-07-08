@@ -18,10 +18,12 @@ import {
   PopoverTrigger,
   PopoverClose,
 } from "@/components/ui/popover";
+import useStorage from "@/hooks/use-storage";
 
 export const DateFilter = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const { setItem } = useStorage("localStorage");
 
   const params = useSearchParams();
   const accountId = params.get("accountId");
@@ -52,6 +54,8 @@ export const DateFilter = () => {
       },
       { skipEmptyString: true, skipNull: true }
     );
+
+    setItem("dateFilter", query);
 
     router.push(url);
   };

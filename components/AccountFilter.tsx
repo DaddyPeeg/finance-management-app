@@ -13,10 +13,12 @@ import {
 
 import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
 import { useGetSummary } from "@/features/summary/api/use-get-summary";
+import useStorage from "@/hooks/use-storage";
 
 export const AccountFilter = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const { setItem } = useStorage("localStorage");
 
   const params = useSearchParams();
   const accountId = params.get("accountId") || "all";
@@ -46,6 +48,7 @@ export const AccountFilter = () => {
       { skipNull: true, skipEmptyString: true }
     );
 
+    setItem("dateFilter", query);
     router.push(url);
   };
 

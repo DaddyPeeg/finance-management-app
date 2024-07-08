@@ -32,15 +32,34 @@ const routes = [
   },
 ];
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import NavButton from "./NavButton";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
+import useStorage from "@/hooks/use-storage";
+import qs from "query-string";
+
+interface DateFilter {
+  from: string;
+  to: string;
+  accountId: string;
+}
 
 const Navigation = () => {
   const pathname = usePathname();
   const router = useRouter();
+  useSearchParams();
+
+  const { getItem } = useStorage("localStorage");
+  const dateFilter = getItem("dateFilter") as DateFilter | null;
+  const { from, to, accountId } = dateFilter || {};
+
+  const query = {
+    ...(from ? { from } : {}),
+    ...(to ? { to } : {}),
+    ...(accountId ? { accountId } : {}),
+  };
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -54,7 +73,11 @@ const Navigation = () => {
       <nav className="hidden lg:flex items-center gap-x-2 overflow-x-auto">
         {routes.map((route, index) => (
           <NavButton
-            href={route.href}
+            href={
+              route.label === "Overview" || route.label === "Transactions"
+                ? `${route.href}?${qs.stringify(query)}`
+                : route.href
+            }
             key={`${route.href}-${index}`}
             label={route.label}
             isActive={pathname === route.href}
