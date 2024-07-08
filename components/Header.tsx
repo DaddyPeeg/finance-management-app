@@ -13,9 +13,9 @@ const Header = () => {
         <div className="w-full flex items-center justify-between mb-14">
           <div className="flex items-center justify-between w-full">
             <HeaderLogo />
-            <div className="flex items-center gap-x-8">
+            <div className="flex items-center w-full lg:w-auto justify-between gap-x-8">
               <Navigation />
-              <div>
+              <div className="flex">
                 <ClerkLoaded>
                   <SignedIn>
                     <UserButton

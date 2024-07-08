@@ -54,7 +54,7 @@ export const columns: ColumnDef<ResponseType>[] = [
     id: "actions",
     cell: ({ row }) => (
       <div className="text-right">
-        <Actions id={row.original.id} />,
+        <Actions id={row.original.id} />
       </div>
     ),
   },
