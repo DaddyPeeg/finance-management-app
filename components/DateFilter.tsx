@@ -64,6 +64,7 @@ export const DateFilter = () => {
     setDate(undefined);
     pushToUrl(undefined);
   };
+  if (pathname === "/accounts" || pathname === "/categories") return null;
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -85,7 +86,7 @@ export const DateFilter = () => {
           defaultMonth={date?.from}
           selected={date}
           onSelect={setDate}
-          numberOfMonths={2}
+          numberOfMonths={1}
         />
         <div className="p-4 w-full flex items-center gap-x-2">
           <PopoverClose asChild>

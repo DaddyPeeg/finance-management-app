@@ -26,10 +26,10 @@ const routes = [
     href: "/categories",
     label: "Categories",
   },
-  {
-    href: "/settings",
-    label: "Settings",
-  },
+  // {
+  //   href: "/settings",
+  //   label: "Settings",
+  // },
 ];
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -105,7 +105,14 @@ const Navigation = () => {
                 <Button
                   variant={route.href === pathname ? "secondary" : "ghost"}
                   key={route.href}
-                  onClick={() => onClick(route.href)}
+                  onClick={() =>
+                    onClick(
+                      route.label === "Overview" ||
+                        route.label === "Transactions"
+                        ? `${route.href}?${qs.stringify(query)}`
+                        : route.href
+                    )
+                  }
                   className="w-full justify-start"
                 >
                   {route.label}

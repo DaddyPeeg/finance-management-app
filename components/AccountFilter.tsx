@@ -52,6 +52,8 @@ export const AccountFilter = () => {
     router.push(url);
   };
 
+  if (pathname === "/accounts" || pathname === "/categories") return null;
+
   return (
     <Select
       value={accountId}

@@ -12,9 +12,9 @@ const SignInPage = () => {
             Login or Create account to get back to your dashboard!
           </p>
         </div>
-        <div className="flex items-center justify-center mt-8 sign-in">
+        <div className="flex items-center justify-center mt-8">
           <ClerkLoaded>
-            <SignIn path="/sign-in" signUpUrl="/sign-up" />
+            <SignIn />
           </ClerkLoaded>
           <ClerkLoading>
             <Loader2 className="w-6 h-6 animate-spin" />

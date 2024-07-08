@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type StorageType = "localStorage" | "sessionStorage";
 
 const useStorage = (storageType: StorageType = "localStorage") => {
-  const [storage] = useState(
-    storageType === "sessionStorage"
-      ? window.sessionStorage
-      : window.localStorage
-  );
+  const [isMounted, setIsMounted] = useState(false);
+  const [storage, setStorage] = useState<Storage>();
+
+  useEffect(() => {
+    if (isMounted) return;
+    setStorage(
+      typeof window !== undefined && storageType === "sessionStorage"
+        ? window?.sessionStorage
+        : window?.localStorage
+    );
+    setIsMounted(true);
+  }, []);
 
   const getItem = <T>(key: string): T | null => {
     try {
-      const item = storage.getItem(key);
+      const item = storage?.getItem(key);
       return item ? JSON.parse(item) : null;
     } catch (error) {
       console.error(`Error getting item from ${storageType}:`, error);
@@ -21,7 +28,7 @@ const useStorage = (storageType: StorageType = "localStorage") => {
 
   const setItem = <T>(key: string, value: T): void => {
     try {
-      storage.setItem(key, JSON.stringify(value));
+      storage?.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.error(`Error setting item in ${storageType}:`, error);
     }
@@ -29,7 +36,7 @@ const useStorage = (storageType: StorageType = "localStorage") => {
 
   const removeItem = (key: string): void => {
     try {
-      storage.removeItem(key);
+      storage?.removeItem(key);
     } catch (error) {
       console.error(`Error removing item from ${storageType}:`, error);
     }
